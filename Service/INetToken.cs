@@ -8,7 +8,7 @@ namespace Service
     public interface IToken : IDisposable
     {
         public Guid ID{get;protected set;}
-        public Socket Socket { get; protected set; }
+        public Socket Socket { get; set;}
 
         public void Init(Socket socket);
     }

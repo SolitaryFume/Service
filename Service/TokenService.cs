@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Service
 {
-    public abstract class TokenService : ServiceBase
+    public class TokenService : ServiceBase
     {
         private List<IToken> m_list;
         private TokenService()
@@ -12,7 +12,6 @@ namespace Service
 
         public void Register(IToken token)
         {
-            Log.Print("用户登录");
             m_list.Add(token);
         }
 

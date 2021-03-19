@@ -23,7 +23,7 @@ namespace Service
             _guid = Guid.NewGuid();
             _socket = socket;
             
-            // _socket.ReceiveAsync(new Memory<byte>(),SocketFlags)
+            StartReceive();
         }
 
     
@@ -31,7 +31,7 @@ namespace Service
         {
             var count = await _socket.ReceiveAsync(readMemory,SocketFlags.None);
             var msg = System.Text.Encoding.UTF8.GetString(readMemory,0,count);
-            Log.Print(msg);
+            Debug.Log($"{this._socket.RemoteEndPoint}>>>{msg}");
             StartReceive();
         }
 

@@ -15,13 +15,14 @@ namespace Service
         {
             _tcpListener = new TcpListener(IPAddress.Any, port);
             _tcpListener.Start();
-            Log.Print("启用TcpListener!");
+            Debug.Log("启用TcpListener!");
             Start();
         }
 
         public async void Start()
         {
             var tcp = await _tcpListener.AcceptSocketAsync();
+            Debug.Log($"new tcp connect : {tcp.RemoteEndPoint}");
             var tokenSer = Services.GetService<TokenService>();
             var token = tokenSer.GetToken();
             token.Init(tcp);

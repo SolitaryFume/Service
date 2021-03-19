@@ -39,7 +39,7 @@ namespace Service
 
             if (_map.ContainsKey(kType))
             {
-                Log.Waring("重复注册");
+                Debug.Warning("重复注册");
                 return false;
             }
             else

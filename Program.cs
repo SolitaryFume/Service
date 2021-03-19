@@ -1,5 +1,7 @@
 ﻿using System;
 using Service;
+using ProtoMessage;
+using System.Text.Json;
 
 namespace Service
 {
@@ -7,9 +9,18 @@ namespace Service
     {
         static void Main(string[] args)
         {
-            // Services.GetService<TcpService>().Start(1024);
-            Debug.Log("测试");
-            // Console.WriteLine(AppDomain.CurrentDomain.path);
+            // var login = new LoginRequest(){
+            //     UserName = "UserName",
+            //     Password = "Password"
+            // };
+
+            // var message = ProtoService.ProtoToMessage(login);
+            // Debug.Log(message);
+
+            // var t = ProtoService.MessageToProto(message);
+
+            // var json = JsonSerializer.Serialize(t);
+            // Debug.Log(json);
 
             Console.ReadLine();
         }

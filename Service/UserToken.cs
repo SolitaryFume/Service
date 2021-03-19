@@ -41,6 +41,11 @@ namespace Service
             var count = await _socket.SendAsync(data,SocketFlags.None);
         }
 
+        public void Send<T>(T proto)
+        {
+            var data = ProtoHelper.Serialize(proto);
+        }
+
         private byte[] readMemory = new byte[1024];
     }
 }

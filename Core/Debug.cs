@@ -11,10 +11,11 @@ namespace Service
     public static class Debug
     {
         private static ILog _log;
-        public static ILog loginfo 
+        private static ILog loginfo
         {
-            get{
-                if(_log==null)
+            get
+            {
+                if (_log == null)
                 {
                     _log = InitLog("serverlog");
                 }
@@ -27,7 +28,7 @@ namespace Service
             if (LogManager.Exists(name) == null)
             {
                 PatternLayout patternLayout = new PatternLayout();
-                patternLayout.ConversionPattern = "%date %thread %level %logger - %message %newline";
+                patternLayout.ConversionPattern = "%date %thread %level - %message %newline";
                 patternLayout.ActivateOptions();
 
                 RollingFileAppender appender = new RollingFileAppender();
@@ -53,7 +54,7 @@ namespace Service
 
                 var appname = Assembly.GetEntryAssembly().GetName().Name;
                 var version = Assembly.GetEntryAssembly().GetName().Version;
-                loger.Log(Level.Info, $"Log name {name} created for Application: {appname} Version: {version}", null);
+                Log("---------------------------------------------------------------------------------");
             }
 
             var log = LogManager.GetLogger(name);

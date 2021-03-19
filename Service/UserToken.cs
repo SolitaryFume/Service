@@ -43,7 +43,7 @@ namespace Service
 
         public void Send<T>(T proto)
         {
-            var data = ProtoHelper.Serialize(proto);
+            var data =ProtoService.Serialize(proto);
         }
 
         private byte[] readMemory = new byte[1024];

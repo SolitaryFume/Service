@@ -83,7 +83,7 @@ namespace Service
 
         public static byte[] ProtoToMessage<T>(T proto)
         {
-            var data = ProtoHelper.Serialize(proto);
+            var data = Serialize(proto);
             var l = data.Length + 8;
             var id =GetProtoID<T>();
             var message = new byte[l];

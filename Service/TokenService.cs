@@ -23,7 +23,7 @@ namespace Service
 
         public IToken GetToken()
         {
-            return new UserToken();   
+            return new UserToken();
         }
     }
 }

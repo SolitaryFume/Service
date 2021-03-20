@@ -9,18 +9,13 @@ namespace Service
     {
         static void Main(string[] args)
         {
-            // var login = new LoginRequest(){
-            //     UserName = "UserName",
-            //     Password = "Password"
-            // };
+            var login = new LoginRequest(){
+                UserName = "UserName",
+                Password = "Password"
+            };
 
-            // var message = ProtoService.ProtoToMessage(login);
-            // Debug.Log(message);
-
-            // var t = ProtoService.MessageToProto(message);
-
-            // var json = JsonSerializer.Serialize(t);
-            // Debug.Log(json);
+            var user = new User();
+            user.MessageHander(login);
 
             Console.ReadLine();
         }

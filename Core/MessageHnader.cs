@@ -1,6 +1,5 @@
 using System;
 using Service;
-using ProtoMessage;
 
 namespace MessageHander
 {
@@ -25,16 +24,6 @@ namespace MessageHander
                 return;
             T m = message as T;
             this.Hander(m,user);
-        }
-    }
-
-    public class LoginHnader : MessageHanderBase<LoginRequest>
-    {
-        public override void Hander(LoginRequest message, IUser user)
-        {
-            user.SendMessage(new LoginResponse(){
-                Code = ErrorCode.OK
-            });
         }
     }
 }

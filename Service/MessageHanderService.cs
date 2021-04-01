@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MessageHander;
+using ProtoMessage;
 
 namespace Service
 {
     public class MessageHanderService : ServiceBase
     {
-        public const bool AUTOREGISTER = true;//自动注册
+        public static bool AUTOREGISTER = false;//自动注册
 
         private Dictionary<Type, IMessageHander> _handerDictionary;
         private MessageHanderService()
@@ -18,6 +19,15 @@ namespace Service
             {
                 AutoRegister();
             }
+            else
+            {
+                InitRegister();
+            }
+        }
+
+        private void InitRegister()
+        {
+            RegisterHander<LoginRequest>(new LoginHnader());
         }
 
         private void AutoRegister()
@@ -56,6 +66,7 @@ namespace Service
         public void RegisterHander<T>(IMessageHander<T> messageHander) where T :class
         {
             _handerDictionary.TryAdd(typeof(T),messageHander);
+            Debug.Log($"RegisterHander>>>>>{typeof(T).Name}=>{messageHander.GetType().Name}");
         }
 
         private bool CheckedHnader(Type type)

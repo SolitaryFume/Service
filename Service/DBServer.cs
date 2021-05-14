@@ -1,6 +1,7 @@
 using System;
 using SqlSugar;
 using DB;
+using Core;
 
 namespace Service
 {
@@ -29,9 +30,6 @@ namespace Service
             db.Aop.OnLogExecuting=(sql,pars)=>{
                 Debug.Log(sql);
             };
-
-            // db.DbMaintenance.CreateDatabase();
-            // db.CodeFirst.SetStringDefaultLength(200).InitTables(typeof(DB.User));
         }
 
         public void Init()

@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using ProtoBuf;
 using ProtoMessage;
+using Core;
 
 namespace Service
 {

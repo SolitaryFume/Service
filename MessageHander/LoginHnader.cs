@@ -1,5 +1,5 @@
+using Proto;
 using Service;
-using ProtoMessage;
 
 namespace MessageHander
 {
@@ -8,16 +8,8 @@ namespace MessageHander
         public override void Hander(LoginRequest message, IUser user)
         {
             user.SendMessage(new LoginResponse(){
-                Code = ErrorCode.OK
+                Code = ResponseCode.OK
             });
-        }
-    }
-
-    public class SingUpHander : MessageHanderBase<SingUpRequest>
-    {
-        public override void Hander(SingUpRequest message, IUser user)
-        {
-            
         }
     }
 }

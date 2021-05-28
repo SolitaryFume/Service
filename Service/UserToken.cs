@@ -1,6 +1,7 @@
 using System;
 using System.Net.Sockets;
 using Core;
+using Proto;
 
 namespace Service
 {
@@ -42,9 +43,9 @@ namespace Service
             var count = await _socket.SendAsync(data,SocketFlags.None);
         }
 
-        public void Send<T>(T proto)
+        public void Send<T>(T proto) where T : INetMessage
         {
-            var data =ProtoService.Serialize(proto);
+            var data =ProroHelp.Encoder(proto);
         }
 
         private byte[] readMemory = new byte[1024];

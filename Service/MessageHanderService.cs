@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MessageHander;
-using ProtoMessage;
 using Core;
+using Proto;
 
 namespace Service
 {

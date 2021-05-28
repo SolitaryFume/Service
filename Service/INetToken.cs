@@ -60,19 +60,19 @@ namespace Service
         {
             if(message==null)
                 return;
-            var messageData = ProtoService.ProtoToMessage<T>(message);
-            if(messageData==null)
-                return;
+            //var messageData = ProtoService.ProtoToMessage<T>(message);
+            //if(messageData==null)
+            //    return;
 
-            if(_sendMessageQueue.Count<=0)
-            {
-                //直接发送
-                SendMessage(messageData);
-            }
-            else
-            {
-                _sendMessageQueue.Enqueue(messageData);
-            }
+            //if(_sendMessageQueue.Count<=0)
+            //{
+            //    //直接发送
+            //    SendMessage(messageData);
+            //}
+            //else
+            //{
+            //    _sendMessageQueue.Enqueue(messageData);
+            //}
         }
 
         private async void SendMessage(byte[] data)
@@ -116,8 +116,8 @@ namespace Service
 
             if(_receiveMessageList.Count>=_messageSize)
             {
-                var message = ProtoService.MessageToProto(_receiveMessageList.Take(_messageSize).ToArray());
-                MessageHander(message);
+                //var message = ProtoService.MessageToProto(_receiveMessageList.Take(_messageSize).ToArray());
+                //MessageHander(message);
                 TryReadMessage();
             }
         }

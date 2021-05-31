@@ -1,41 +1,41 @@
-using System;
-using SqlSugar;
-using DB;
-using Core;
+//using System;
+//using SqlSugar;
+//using DB;
+//using Core;
 
-namespace Service
-{
-    public class DBServer:ServiceBase
-    {
-        public static string CurrentProjectPath 
-        {
-            get
-            {
-                return Environment.CurrentDirectory.Replace(@"\bin\Debug","");
-            }
-        }
+//namespace Service
+//{
+//    public class DBServer:ServiceBase
+//    {
+//        public static string CurrentProjectPath 
+//        {
+//            get
+//            {
+//                return Environment.CurrentDirectory.Replace(@"\bin\Debug","");
+//            }
+//        }
 
-        private SqlSugarClient db;
-        private DBServer()
-        {
-            var connectionString = $@"DataSource ={CurrentProjectPath}\DataBase\test.db";
+//        private SqlSugarClient db;
+//        private DBServer()
+//        {
+//            var connectionString = $@"DataSource ={CurrentProjectPath}\DataBase\test.db";
             
-            Debug.Log(connectionString);
-            db = new SqlSugarClient(new ConnectionConfig(){
-                ConnectionString = connectionString,
-                DbType = DbType.Sqlite,
-                IsAutoCloseConnection = true
-            });
+//            Debug.Log(connectionString);
+//            db = new SqlSugarClient(new ConnectionConfig(){
+//                ConnectionString = connectionString,
+//                DbType = DbType.Sqlite,
+//                IsAutoCloseConnection = true
+//            });
 
-            db.Aop.OnLogExecuting=(sql,pars)=>{
-                Debug.Log(sql);
-            };
-        }
+//            db.Aop.OnLogExecuting=(sql,pars)=>{
+//                Debug.Log(sql);
+//            };
+//        }
 
-        public void Init()
-        {
-            var ls = db.Queryable<DB.User>().ToList();
-            Debug.Log(ls.Count);
-        }
-    }
-}
+//        public void Init()
+//        {
+//            var ls = db.Queryable<DB.User>().ToList();
+//            Debug.Log(ls.Count);
+//        }
+//    }
+//}

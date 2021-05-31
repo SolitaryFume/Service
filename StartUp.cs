@@ -2,6 +2,8 @@
 using MessageHander;
 using Microsoft.Extensions.DependencyInjection;
 using Proto;
+using Core;
+using Core.Client;
 
 namespace Service
 {
@@ -12,17 +14,23 @@ namespace Service
             var services = new ServiceCollection();
             ConfigureServices(services);
             IOC.Root = services.BuildServiceProvider();
+
+            IOC.Root.GetService<ITcpServer>().Start("0.0.0.0",8888);
         }
 
         private void ConfigureServices(ServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddSingleton<ITcpServer, TcpServer>();
+                .AddSingleton<MessageHanderService>(new MessageHanderService())
+                .AddSingleton<ITcpServer, TcpServer>()
+                .AddTransient<ISession,TcpSession>()
+                .AddTransient<IClient,ClientProxy>()
+                ;
         }
 
         private void RegisterMessageHandler(ServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IMessageHander<LoginRequest>, LoginHnader>();
+            serviceCollection.AddSingleton<IMessageHander<LoginRequest>, LoginHnader>();
         }
     }
 }

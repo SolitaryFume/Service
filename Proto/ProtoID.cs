@@ -1,5 +1,4 @@
-﻿//using UnityEditorInternal.VR;
-
+﻿
 namespace Proto
 {
     public enum ProtoID:ushort

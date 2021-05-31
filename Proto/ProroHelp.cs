@@ -40,18 +40,27 @@ namespace Proto
             }
         }
 
-        public static byte[] Encoder(object message)
+        public static byte[] Encoder(INetMessage message)
         {
             var ty = message.GetType();
             var id = keys[ty];
-            using (var stream = new MemoryStream())
+            using (var memory = new MemoryStream())
             {
-                Serializer.Serialize(stream, message);
-                var data = stream.ToArray();
-                var list = new List<byte>(data.Length + 2);
-                list.AddRange(BitConverter.GetBytes((ushort)id));
-                list.AddRange(data);
-                return list.ToArray();
+                Serializer.Serialize(memory, message);
+                var data = new byte[memory.Length + 4];
+                Array.Copy(BitConverter.GetBytes((ushort)data.Length), 0, data, 0, 2);
+                Array.Copy(BitConverter.GetBytes((ushort)id), 0, data, 2, 2);
+                Array.Copy(memory.ToArray(), 0, data, 4,memory.Length);
+                return data;
+            }
+        }
+
+        public static INetMessage Decoder(ushort proroid,byte[] data)
+        {
+            var id = (ProtoID)proroid;
+            using (var stream = new MemoryStream(data))
+            {
+                return Serializer.Deserialize(protocols[id], stream) as INetMessage;
             }
         }
     }

@@ -5,10 +5,11 @@ using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
+using System.Diagnostics;
 
 namespace Core
-{
-    public static class Debug
+{   
+    public static class Log
     {
         private static ILog _log;
         private static ILog loginfo
@@ -54,14 +55,15 @@ namespace Core
 
                 var appname = Assembly.GetEntryAssembly().GetName().Name;
                 var version = Assembly.GetEntryAssembly().GetName().Version;
-                Log("---------------------------------------------------------------------------------");
+                Print("日志模块启动!");
             }
 
             var log = LogManager.GetLogger(name);
             return log;
         }
 
-        public static void Log(object message)
+        [DebuggerHidden]
+        public static void Print(object message)
         {
             if (loginfo == null)
             {
@@ -70,7 +72,7 @@ namespace Core
             loginfo.Debug(message);
         }
 
-        public static void LogFormat(string format, params object[] args)
+        public static void PrintFormat(string format, params object[] args)
         {
             loginfo.DebugFormat(format, args);
         }

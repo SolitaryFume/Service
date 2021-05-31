@@ -1,29 +1,27 @@
 using System;
-using Service;
+//using Service;
+using Core.Client;
 
 namespace MessageHander
 {
     public interface IMessageHander
     {
-        void Hander(object message,IUser user);
+        void Hander(object message,IClient user);
     }
 
-    public interface IMessageHander<T>:IMessageHander where T : class
+    public interface IMessageHander<T> : IMessageHander where T : class
     {
-        void Hander(T message, IUser user);
+        void Hander(T message, IClient user);
     }
 
-    public abstract class MessageHanderBase<T> : IMessageHander<T> 
+    public abstract class MessageHanderBase<T> : IMessageHander<T>
         where T : class
     {
-        public abstract void Hander(T message, IUser user);
+        public abstract void Hander(T message, IClient user);
 
-        public void Hander(object message, IUser user)
+        public void Hander(object message, IClient user)
         {
-            if(message==null)
-                return;
-            T m = message as T;
-            this.Hander(m,user);
+            Hander(message as T, user);
         }
     }
 }

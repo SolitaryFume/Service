@@ -1,7 +1,7 @@
 ﻿using Core;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service
+namespace Core
 {
     public class IOC
     {
@@ -11,7 +11,7 @@ namespace Service
             get => _root;
             set
             {
-                Debug.Assert(_root == null, "ServiceProvider Already Initialize !");
+                Log.Assert(_root == null, "ServiceProvider Already Initialize !");
                 _root = value;
             }
         }
